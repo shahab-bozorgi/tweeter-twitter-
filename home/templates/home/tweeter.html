@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Tweeter</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "css/post.css" %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="/your-path-to-fontawesome/css/v5-font-face.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/b0e8b56a0f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body class="bgnd" style="background: rgb(22, 22, 22) !important;padding: 20px;">
+
+
+<div class="container">
+
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="input_tw">
+            <input class="form-control" id="input_tweet" name="description" type="text"
+                   placeholder="What is happening?!">
+        </div>
+
+        <div style="padding: 1em">
+            <button class="btn bg-primary" type="submit">send</button>
+        </div>
+
+    </form>
+
+    <br><br>
+</div>
+
+<div class="container">
+
+    {% for item in tweet %}
+
+
+        {% if request.user.is_authenticated %}
+
+            <div class="">
+                <div style="display: flex">
+                    {% if user.profile.image %}
+                        <span style="margin-top: 0.7em"> <img src="{{ item.user.profile.image.url }}" width="40px"
+                                                              height="40px" alt=""
+                                                              style="border-radius:100%"></span>
+
+                    {% else %}
+                        <span><img src="{% static 'images/default.png' %}" width="40px"
+                                   height="40px" alt="" style="border-radius:100%"></span>
+                    {% endif %}
+
+
+                    <h4 class="title_name"
+                        style="color: #337ab7; padding-top: 0.5em;padding-left: 0.5em;">{{ item.user.first_name }}</h4>
+                    <h5 class="title_name"
+                        style="color: #5b5b5b; padding-top: 0.8em;padding-left: 0.5em;">@{{ item.user.username }}</h5>
+
+                <div style="  position: absolute;right: 28%;">
+                    <p class="description_tweet"
+                   style="color: #5B5B5BFF;  padding-left: 2em;padding-top: 1em;"> {{ item.created|date:'j F' }}, {{ item.created|time }}  </p>
+                </div>
+
+
+                </div>
+
+                <p class="description_tweet"
+                   style="color: #e5e5e5;    padding-left: 2em;padding-top: 2em;">{{ item.description }} </p>
+
+
+                <hr>
+            </div>
+        {% endif %}
+
+
+    {% endfor %}
+    <style>
+        ul.page-numbers {
+            text-align: center;
+            padding-top: 4em;
+        }
+
+        ul.page-numbers li {
+            display: inline-block;
+            margin: 0px 5px;
+        }
+
+        ul.page-numbers li a {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+            font-size: 15px;
+            color: #7a7a7a;
+            border: 1px solid #eee;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        ul.page-numbers li.active a {
+            background-color: #337ab7;
+            border-color: #337ab7;
+            color: #fff;
+        }
+
+        ul.page-numbers li a:hover {
+            color: #fff;
+        }
+
+        .fa-angle-double-right:before {
+            content: "\f101";
+        }
+
+        .col-lg-12 {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px
+        }
+
+        .col-lg-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%
+        }
+
+    </style>
+
+</div>
+<div class="col-lg-12">
+    {% if tweet.has_other_pages %}
+        <ul class="page-numbers">
+            {% if tweet.has_previous %}
+                <li><a href="?page={{ tweet.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i
+                        class="fa fa-angle-double-left"></i></a></li>
+            {% endif %}
+
+            {% for i in tweet.paginator.page_range %}
+                {% if tweet.number == i %}
+                    <li class="active"><a
+                            href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a></li>
+                {% else %}
+                    <li><a href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a></li>
+
+                {% endif %}
+                {#                                            <li class="active"><a href="#">2</a></li>#}
+
+            {% endfor %}
+
+            {% if posts.has_next %}
+                <li><a href="?page={{ posts.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"><i
+                        class="fa fa-angle-double-right"></i></a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</div>
+
+</body>
+</html>
+

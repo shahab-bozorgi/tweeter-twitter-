@@ -1,0 +1,119 @@
+
+.bck_g{
+    background: rgb(22, 22, 22) !important;
+    padding: 20px;
+}
+
+#input_tweet{
+        background: rgb(22, 22, 22);
+    height: 3em;
+
+
+}
+
+.input_tw{
+    padding: 1em;
+}
+
+#s_tweet{
+    padding: 1em !important;
+}
+
+
+.container {
+    border-style: solid;
+    border-color: rgb(39 39 39);
+    width: 51em  !important;
+
+}
+.body{
+}
+
+.value {
+    background-color: rgb(22, 22, 22);
+    color:rgb(231, 233, 234);
+}
+.post {
+    background-color: rgb(29, 155, 240);
+    width: 5rem;
+    border-radius: 0.5rem;
+}
+
+.btn-primary {
+    color: rgb(231, 233, 234) !important;
+    background-color: black !important;
+    border-color: black !important;
+}
+
+.p_d {
+    display: flex;
+    flex-direction: row-reverse;
+
+}
+
+.ul_tw{
+    color: rgb(231, 233, 234);
+}
+
+.box_twitt{
+    display: flex;
+    font-size: 1em;
+    flex-direction: column;
+
+    border-color: rgb(33 33 33);
+}
+
+.ul_div{
+    margin-left: 0em !important;
+    padding-left: 0em !important;
+}
+
+hr.line1{
+    color: rgb(63, 63, 63) !important;
+}
+.top_twitt{
+    font-size: 1.5em;
+    color:rgb(29, 155, 240) ;
+    padding-left: 0.5em;
+}
+.bottom_twitt{
+    margin-right: 1em;
+    font-size: 1.3em;
+    margin-left: 1em;
+    padding-left: 0.5em;
+    margin-bottom: 0.3em;
+
+}
+
+.add_twitte{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.modal-header{
+    padding: 15px;
+    border-bottom: beige;
+    background: black !important;
+}
+
+.modal-body {
+    position: relative;
+    padding: 15px;
+    background: black !important;
+}
+
+.modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    background: black !important;
+}
+
+
+
+
+.description_tweet{
+    color: #e5e5e5;
+
+}
